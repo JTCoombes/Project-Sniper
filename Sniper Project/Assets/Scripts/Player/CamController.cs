@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CamController : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class CamController : MonoBehaviour
 
     [Header("UI")]
     public Slider MouseSensSlider;
-    public Text MouseSensText;
+    public TMP_Text MouseSensText;
 
 
 
@@ -26,12 +27,12 @@ public class CamController : MonoBehaviour
         Cam.fieldOfView = BaseFov;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        /*
+        
         MouseSensSlider.value = MouseSens;
         MouseSensText.text = MouseSens.ToString();
 
         LoadSettings();
-        */
+        
     }
 
     // Update is called once per frame
@@ -48,12 +49,15 @@ public class CamController : MonoBehaviour
 
     private void LoadSettings()
     {
-       
+        float camsens = PlayerPrefs.GetFloat("BaseSens");
+        MouseSens = camsens;
+        MouseSensSlider.value = camsens;
+        MouseSensText.text = MouseSens.ToString();
     }
 
     public void SaveSettings()
     {
-
+        PlayerPrefs.SetFloat("BaseSens", MouseSens);
     }
 
     public void MouseSensitivity(float amount)
