@@ -28,10 +28,10 @@ public class CamController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         
-        MouseSensSlider.value = MouseSens;
-        MouseSensText.text = MouseSens.ToString();
+        //MouseSensSlider.value = MouseSens;
+        //MouseSensText.text = MouseSens.ToString();
 
-        LoadSettings();
+        //LoadSettings();
         
     }
 
