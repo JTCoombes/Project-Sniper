@@ -25,8 +25,7 @@ public class CamController : MonoBehaviour
     void Start()
     {
         Cam.fieldOfView = BaseFov;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        
         
         //MouseSensSlider.value = MouseSens;
         //MouseSensText.text = MouseSens.ToString();
