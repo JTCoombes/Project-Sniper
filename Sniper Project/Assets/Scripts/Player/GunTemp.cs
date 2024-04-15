@@ -8,9 +8,12 @@ public class GunTemp : MonoBehaviour
     public Transform shootpoint;
     [SerializeField]
     private Camera MainCam;
+    [Range(0, 1000)]
     public float Range;
-    public LayerMask Mask;
+    public LayerMask IgnoreRaycast;
     Vector3 cursorPos;
+
+    public bool CantShoot;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +24,7 @@ public class GunTemp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !CantShoot)
         {
             Shoot();
         }
@@ -37,7 +40,7 @@ public class GunTemp : MonoBehaviour
 
         Vector3 shootdirection = MainCam.transform.forward;
         
-        if(Physics.Raycast(shootpoint.position, shootdirection, out hit, Range))
+        if(Physics.Raycast(shootpoint.position, shootdirection, out hit, Range, ~IgnoreRaycast))
         {
             cursorPos = hit.point;
             Debug.Log(hit.transform.name);

@@ -7,8 +7,10 @@ using TMPro;
 public class CamController : MonoBehaviour
 {
     [Header("Properties")]
+    [Range(0,500)]
     public float MouseSens;
     float RotX = 0f;
+    [Range(60,100)]
     public float BaseFov = 90;
 
     [Header("Refs")]
@@ -24,13 +26,16 @@ public class CamController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         Cam.fieldOfView = BaseFov;
         
         
-        //MouseSensSlider.value = MouseSens;
-        //MouseSensText.text = MouseSens.ToString();
+        MouseSensSlider.value = MouseSens;
+        MouseSensText.text = MouseSens.ToString();
 
-        //LoadSettings();
+        LoadSettings();
         
     }
 
