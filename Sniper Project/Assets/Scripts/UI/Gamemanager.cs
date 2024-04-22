@@ -5,7 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class Gamemanager : MonoBehaviour
 {
+    public static Gamemanager instance;
+
     public GameObject[] Screens;
+
+    public void Start()
+    {
+        //instance = this;
+
+        //SceneManager.LoadSceneAsync(0, LoadSceneMode.Additive);
+    }
+
+    public void Loadgame()
+    {
+
+    }
 
     public void StartGame()
     {
