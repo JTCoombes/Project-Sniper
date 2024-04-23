@@ -89,7 +89,10 @@ public class PauseMenu : MonoBehaviour
 
     public void MainMenu()
     {
-        SceneManager.LoadScene("StartScreen");
+        //IsPaused = false;
+        //Insettings = false;
+        Time.timeScale = 1f;
+        Gamemanager.instance.LoadStartScreen();
     }
 
     public void Quit()

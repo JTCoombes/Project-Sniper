@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class CamController : MonoBehaviour
@@ -26,10 +27,14 @@ public class CamController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        Cam.fieldOfView = BaseFov;
+        Scene scene = SceneManager.GetActiveScene();
+        if(scene.name != "StartScreen")
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            Cam.fieldOfView = BaseFov;
+        }
+        
         
         
         MouseSensSlider.value = MouseSens;

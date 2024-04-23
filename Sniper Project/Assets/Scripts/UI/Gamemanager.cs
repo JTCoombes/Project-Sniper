@@ -9,16 +9,26 @@ public class Gamemanager : MonoBehaviour
 
     public GameObject[] Screens;
 
+    private Scene CurrentScene;
+
     public void Start()
     {
-        //instance = this;
+        instance = this;
+        
 
-        //SceneManager.LoadSceneAsync(0, LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync((int)SceneIndex.StartScreen,LoadSceneMode.Additive);
     }
 
     public void Loadgame()
     {
+        SceneManager.UnloadSceneAsync((int)SceneIndex.StartScreen);
+        SceneManager.LoadSceneAsync((int)SceneIndex.GameScene, LoadSceneMode.Additive);
+    }
 
+    public void LoadStartScreen()
+    {
+        SceneManager.UnloadSceneAsync((int)SceneIndex.GameScene);
+        SceneManager.LoadSceneAsync((int)SceneIndex.StartScreen, LoadSceneMode.Additive);
     }
 
     public void StartGame()
@@ -43,3 +53,12 @@ public class Gamemanager : MonoBehaviour
         Debug.Log("Quitting");
     }
 }
+
+public enum SceneIndex 
+{
+    PersitantScene = 0,
+    StartScreen = 1,
+    GameScene = 2,
+
+}
+
