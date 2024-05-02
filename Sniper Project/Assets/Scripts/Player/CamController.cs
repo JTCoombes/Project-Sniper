@@ -28,17 +28,10 @@ public class CamController : MonoBehaviour
     void Start()
     {
         Scene scene = SceneManager.GetActiveScene();
-        if(scene.name != "StartScreen")
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            Cam.fieldOfView = BaseFov;
-        }
-        
-        
-        
+
         MouseSensSlider.value = MouseSens;
         MouseSensText.text = MouseSens.ToString();
+        Cam.fieldOfView = BaseFov;
 
         LoadSettings();
         
@@ -54,6 +47,7 @@ public class CamController : MonoBehaviour
         RotX = Mathf.Clamp(RotX, -90f, 90f);
         transform.localRotation = Quaternion.Euler(RotX, 0f, 0f);
         Player.Rotate(Vector3.up * mouseX);
+
     }
 
     private void LoadSettings()

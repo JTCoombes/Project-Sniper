@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class Gamemanager : MonoBehaviour
 {
@@ -9,7 +11,15 @@ public class Gamemanager : MonoBehaviour
 
     public GameObject[] Screens;
 
+    public GameObject LoadingScreen;
+
+    public Slider Progressbar;
+    public TMP_Text ProgressText;
+
     private Scene CurrentScene;
+
+    float totalSceneProgress;
+    List<AsyncOperation> asyncsList = new List<AsyncOperation>(); 
 
     public void Start()
     {
@@ -21,8 +31,39 @@ public class Gamemanager : MonoBehaviour
 
     public void Loadgame()
     {
+        LoadingScreen.SetActive(true);
+        asyncsList.Add(SceneManager.LoadSceneAsync((int)SceneIndex.GameScene, LoadSceneMode.Additive));
+
+        StartCoroutine(GetLoadProgress());
+        //SceneManager.UnloadSceneAsync((int)SceneIndex.StartScreen);
+    }
+
+    public IEnumerator GetLoadProgress()
+    {
+        for (int i = 0; i < asyncsList.Count; i++)
+        {
+            while (!asyncsList[i].isDone)
+            {
+                totalSceneProgress = 0;
+
+                foreach (AsyncOperation operation in asyncsList)
+                {
+                    totalSceneProgress += operation.progress;
+                    
+                }
+
+                totalSceneProgress = (totalSceneProgress / asyncsList.Count) * 100f;
+
+                Progressbar.value = Mathf.RoundToInt(totalSceneProgress);
+
+                ProgressText.text = string.Format("Loading Level: {0}% ", totalSceneProgress);
+
+                yield return null;
+            }
+        }
+
+        LoadingScreen.SetActive(false);
         SceneManager.UnloadSceneAsync((int)SceneIndex.StartScreen);
-        SceneManager.LoadSceneAsync((int)SceneIndex.GameScene, LoadSceneMode.Additive);
     }
 
     public void LoadStartScreen()

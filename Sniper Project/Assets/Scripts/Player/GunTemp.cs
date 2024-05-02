@@ -12,13 +12,14 @@ public class GunTemp : MonoBehaviour
     public float Range;
     public LayerMask IgnoreRaycast;
     Vector3 cursorPos;
+    public float Damage;
 
     public bool CantShoot;
 
     // Start is called before the first frame update
     void Start()
     {
-        MainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        //MainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -51,16 +52,19 @@ public class GunTemp : MonoBehaviour
                 if (hit.collider.CompareTag("Head"))
                 {
                     Debug.Log("hit head");
+                    target.TakeDamage(Damage);
                 }
 
                 if (hit.collider.CompareTag("Body"))
                 {
                     Debug.Log("hit Body");
+                    target.TakeDamage(Damage/2);
                 }
 
                 if (hit.collider.CompareTag("Limb"))
                 {
                     Debug.Log("hit Limbs");
+                    target.TakeDamage(Damage/3);
                 }
 
 

@@ -7,10 +7,6 @@ using TMPro;
 
 public class LoadingScreen : MonoBehaviour
 {
-
-
-
-
     #region LoadingScreen_1
     /*
     public string LevelToLoad;
