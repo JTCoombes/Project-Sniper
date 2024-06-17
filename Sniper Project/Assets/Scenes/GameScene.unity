@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 5002.1846, g: 5128.118, b: 5328.367, a: 1}
+  m_IndirectSpecularColor: {r: 5017.3726, g: 5144.3438, b: 5335.2773, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1572,6 +1572,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GT3 RS
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3576b7af6f25ef147ab4dba87e6e9f03,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3576b7af6f25ef147ab4dba87e6e9f03, type: 3}
 --- !u!1 &1133426508
@@ -2808,6 +2813,7 @@ GameObject:
   - component: {fileID: 2092291878}
   - component: {fileID: 2092291877}
   - component: {fileID: 2092291876}
+  - component: {fileID: 2092291880}
   m_Layer: 0
   m_Name: Gun Temp
   m_TagString: Untagged
@@ -2838,7 +2844,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2092291874}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8221a89f047fea84f99bd25870dc4f1f, type: 3}
   m_Name: 
@@ -2914,3 +2920,42 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2092291874}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2092291880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092291874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a342a7b9cbd9f26469e0d4b7374c62f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bullet: {fileID: 3087127499031436618, guid: de87855afac50cf42a9ae1c89af0a29a, type: 3}
+  Shootpoint: {fileID: 563364613}
+  CC: {fileID: 274667218}
+  Cam: {fileID: 1546955198}
+  IgnoreRaycast:
+    serializedVersion: 2
+    m_Bits: 4
+  shotSpeed: 0
+  GravityForce: 0
+  BulletLife: 0
+  pauseMenu: {fileID: 0}
+  Damage: 0
+  HeadShot_Damage: 0
+  BodyShot_Damage: 0
+  LimbShot_Damage: 0
+  FireRate: 15
+  ClipSize: 3
+  MaxClipSize: 3
+  TotalAmmo: 30
+  IsReloading: 0
+  IsEmpty: 0
+  gunshot: {fileID: 0}
+  isAiming: 0
+  FovBase: 60
+  FovAds: 30
+  AdsSpeed: 0
+  CantShoot: 1

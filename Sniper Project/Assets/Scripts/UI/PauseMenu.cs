@@ -10,7 +10,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject SettingsUI;
 
     [SerializeField]
-    private bool IsPaused;
+    public bool IsPaused;
     [SerializeField]
     private bool Insettings;
     [SerializeField]
