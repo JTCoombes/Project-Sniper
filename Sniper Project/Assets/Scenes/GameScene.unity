@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 5017.3726, g: 5144.3438, b: 5335.2773, a: 1}
+  m_IndirectSpecularColor: {r: 5002.7554, g: 5128.801, b: 5328.8496, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -665,7 +665,6 @@ MonoBehaviour:
   SettingsUI: {fileID: 1160040235}
   IsPaused: 0
   Insettings: 0
-  gun: {fileID: 2092291876}
 --- !u!4 &320641353
 Transform:
   m_ObjectHideFlags: 0
@@ -1048,7 +1047,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563364612}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.506}
+  m_LocalPosition: {x: 0.035, y: 0.41, z: 1.319}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1720,6 +1719,75 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1317444103}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1183914364
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 274667217}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 9624e86732f1ec74185cbd963de41cd9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9624e86732f1ec74185cbd963de41cd9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.331
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9624e86732f1ec74185cbd963de41cd9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.469
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9624e86732f1ec74185cbd963de41cd9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.777
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9624e86732f1ec74185cbd963de41cd9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9624e86732f1ec74185cbd963de41cd9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9624e86732f1ec74185cbd963de41cd9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9624e86732f1ec74185cbd963de41cd9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9624e86732f1ec74185cbd963de41cd9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9624e86732f1ec74185cbd963de41cd9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9624e86732f1ec74185cbd963de41cd9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9624e86732f1ec74185cbd963de41cd9,
+        type: 3}
+      propertyPath: m_Name
+      value: M170RifleModel
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9624e86732f1ec74185cbd963de41cd9, type: 3}
 --- !u!1 &1216558970 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3135921509060577837, guid: 04f76d44d5e1bb44c93ed488f516ef74,
@@ -2877,7 +2945,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2092291874}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2939,15 +3007,15 @@ MonoBehaviour:
   IgnoreRaycast:
     serializedVersion: 2
     m_Bits: 4
-  shotSpeed: 0
-  GravityForce: 0
-  BulletLife: 0
-  pauseMenu: {fileID: 0}
+  shotSpeed: 900
+  GravityForce: 9.8
+  BulletLife: 5
+  pauseMenu: {fileID: 320641352}
   Damage: 0
   HeadShot_Damage: 0
   BodyShot_Damage: 0
   LimbShot_Damage: 0
-  FireRate: 15
+  FireRate: 1
   ClipSize: 3
   MaxClipSize: 3
   TotalAmmo: 30
@@ -2957,5 +3025,5 @@ MonoBehaviour:
   isAiming: 0
   FovBase: 60
   FovAds: 30
-  AdsSpeed: 0
+  AdsSpeed: 3
   CantShoot: 1

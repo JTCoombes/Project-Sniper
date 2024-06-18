@@ -81,7 +81,7 @@ public class SniperRifleV1 : MonoBehaviour
     {
         //anim
         //hitsfx
-        pauseMenu = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<PauseMenu>();
+        pauseMenu = GameObject.Find("Menu Manager").GetComponent<PauseMenu>();
 
         //clipammo
         //maxammo
@@ -159,7 +159,14 @@ public class SniperRifleV1 : MonoBehaviour
         ammoused++;
 
         //bullet
-        GameObject bullet = Instantiate(Bullet, Shootpoint.position, Shootpoint.rotation);
+        GameObject BulletOBJ = Instantiate(Bullet, Shootpoint.position, Shootpoint.rotation);
+        Bullet BulletScript = BulletOBJ.GetComponent<Bullet>();
+
+        if (BulletScript)
+        {
+            BulletScript.Initilize(Shootpoint, shotSpeed, GravityForce);
+        }
+        Destroy(BulletOBJ, BulletLife);
                 
     }
 }

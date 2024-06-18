@@ -14,7 +14,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField]
     private bool Insettings;
     [SerializeField]
-    GunTemp gun;
+    //GunTemp gun;
 
 
     // Start is called before the first frame update
@@ -48,7 +48,7 @@ public class PauseMenu : MonoBehaviour
         Insettings = false;
         PauseUI.SetActive(true);
         SettingsUI.SetActive(false);
-        gun.CantShoot = true;
+        //gun.CantShoot = true;
         Time.timeScale = Mathf.Epsilon;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -61,7 +61,7 @@ public class PauseMenu : MonoBehaviour
         Insettings = false;
         PauseUI.SetActive(false);
         SettingsUI.SetActive(false);
-        gun.CantShoot = false;
+        //gun.CantShoot = false;
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
