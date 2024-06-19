@@ -11,7 +11,7 @@ public class SniperRifleV1 : MonoBehaviour
      */
 
     [Header("Misc Elements")]
-    //public Animator Anim;
+    public Animator Anim;
     public GameObject Bullet;
     public Transform Shootpoint;
     //public Transform Player;
@@ -127,10 +127,12 @@ public class SniperRifleV1 : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
+            Anim.SetBool("Scope", true);
             isAiming = true;
         }
         else if (Input.GetMouseButtonUp(1))
         {
+            Anim.SetBool("Scope", false);
             isAiming = false;
         }
 

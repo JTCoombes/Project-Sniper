@@ -40,19 +40,44 @@ public class Bullet : MonoBehaviour
         {
             StartTime = Time.time;
         }
+
+        CalculateHit();
     }
 
     void CalculateHit()
     {
         RaycastHit hit;
         float currentTime = Time.time - StartTime;
+        float PrevTime = currentTime - Time.fixedDeltaTime;
         float nextTime = currentTime + Time.fixedDeltaTime;
 
+
         Vector3 currentPos = findPoint(currentTime);
+        
         Vector3 NextPos = findPoint(nextTime);
 
+        if(PrevTime > 0)
+        {
+            Vector3 prevPos = findPoint(PrevTime);
+            if (CastRayBetweenPoints(prevPos, currentPos, out hit))
+            {
+                Debug.Log(hit.transform.name);
+
+               
+                Destroy(this.gameObject);
+            }
+            
+        }
         if(CastRayBetweenPoints(currentPos, NextPos, out hit))
         {
+            Debug.Log(hit.transform.name);
+
+            /*Shootable shootable = hit.transform.GetComponent<Shootable>();
+            if (shootable)
+            {
+                shootable.Onhit(hit,10);
+            }
+            */
             Destroy(this.gameObject);
         }
     }

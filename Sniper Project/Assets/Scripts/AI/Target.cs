@@ -13,12 +13,6 @@ public class Target : MonoBehaviour
         Health = maxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void TakeDamage(float Damage)
     {
         Health -= Damage;
