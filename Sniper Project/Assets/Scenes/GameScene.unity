@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 4
+  m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 4964.455, g: 5104.757, b: 5328.8496, a: 1}
+  m_IndirectSpecularColor: {r: 4964.455, g: 5104.749, b: 5328.8496, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -420,7 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 190345842}
-  Bullet: {fileID: 3087127499031436618, guid: de87855afac50cf42a9ae1c89af0a29a, type: 3}
+  Bullet: {fileID: 570079649818430286, guid: 3d1c8e47c7aba3246959b0592a80e175, type: 3}
   Shootpoint: {fileID: 563364613}
   CC: {fileID: 274667218}
   Cam: {fileID: 1546955198}
@@ -428,7 +428,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   shotSpeed: 900
-  GravityForce: 9.8
+  GravityForce: 9.81
   BulletLife: 5
   pauseMenu: {fileID: 320641352}
   Damage: 0
@@ -674,7 +674,7 @@ PrefabInstance:
     - target: {fileID: 2798247792132425136, guid: bd04bc8eb247c90459f0c6ca4b35f983,
         type: 3}
       propertyPath: field of view
-      value: 60
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2798247792132425136, guid: bd04bc8eb247c90459f0c6ca4b35f983,
         type: 3}
@@ -1211,7 +1211,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563364612}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0401, z: 0.963}
+  m_LocalPosition: {x: 0, y: 0.0401, z: 0.9718}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1741,7 +1741,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c9724815b9f0e314289e6813649f5a46,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.0008
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c9724815b9f0e314289e6813649f5a46,
         type: 3}
