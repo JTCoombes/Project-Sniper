@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
 
 public class SniperRifleV1 : MonoBehaviour
 {
@@ -17,9 +19,11 @@ public class SniperRifleV1 : MonoBehaviour
     //public Transform Player;
     public CamController CC;
     public Camera Cam;
+    public Camera ScopeCam;
     //public GameObject Scope;
     private Vector3 cursorPos;
     public LayerMask IgnoreRaycast;
+    public Volume volume;
 
     [Space]
     public float shotSpeed;
@@ -62,10 +66,13 @@ public class SniperRifleV1 : MonoBehaviour
     public bool isAiming;
     public float FovBase = 60f;
     public float FovAds = 30f;
+    public float ScopeBase = 25f;
+    public float scopeZoom;
     public float AdsSpeed;
 
     [Space]
     public bool CantShoot = true;
+    public bool CanZoom;
 
 
     private void OnEnable()
@@ -83,6 +90,10 @@ public class SniperRifleV1 : MonoBehaviour
         //hitsfx
         pauseMenu = GameObject.Find("Menu Manager").GetComponent<PauseMenu>();
 
+        if (volume.profile.TryGet(out DepthOfField depthOfField))
+        {
+            depthOfField.active = false;
+        }
         //clipammo
         //maxammo
     }
@@ -96,6 +107,16 @@ public class SniperRifleV1 : MonoBehaviour
             //anim
             Shoot();
             //clip ammo
+        }
+
+        if (Input.GetKey(KeyCode.E) && isAiming)
+        {
+            CanZoom = true;
+        }
+
+        if (Input.GetKey(KeyCode.Q) && isAiming)
+        {
+            CanZoom = false;
         }
 
         if(TotalAmmo <= 0 && ClipSize <= 0)
@@ -116,7 +137,7 @@ public class SniperRifleV1 : MonoBehaviour
         {
             ClipSize = 0;
             //anim
-            //reload
+            StartCoroutine(Reload());
             return;
         }
 
@@ -129,11 +150,13 @@ public class SniperRifleV1 : MonoBehaviour
         {
             Anim.SetBool("Scope", true);
             isAiming = true;
+          
         }
         else if (Input.GetMouseButtonUp(1))
         {
             Anim.SetBool("Scope", false);
             isAiming = false;
+            
         }
 
         if (isAiming)
@@ -143,6 +166,16 @@ public class SniperRifleV1 : MonoBehaviour
         else if (!isAiming)
         {
             Cam.fieldOfView = Mathf.Lerp(Cam.fieldOfView, FovBase, AdsSpeed * Time.deltaTime);
+            CanZoom = false;
+        }
+
+        if (CanZoom)
+        {
+            ScopeCam.fieldOfView = scopeZoom;
+        }
+        else if (!CanZoom)
+        {
+            ScopeCam.fieldOfView = ScopeBase;
         }
 
         if (pauseMenu.IsPaused)
@@ -170,5 +203,40 @@ public class SniperRifleV1 : MonoBehaviour
         }
         Destroy(BulletOBJ, BulletLife);
                 
+    }
+
+    public IEnumerator Reload()
+    {
+        isAiming = false;
+        CanZoom = false;
+        CantShoot = true;
+        IsReloading = true;
+        RemainingAmmo = 0;
+        ammoused = 0;
+
+        yield return new WaitForSeconds(1f);
+
+        ClipSize = MaxClipSize;
+
+        yield return new WaitForSeconds(.5f);
+
+        CantShoot = false;
+        IsReloading = false;
+    }
+
+    public void Activate()
+    {
+        if (volume.profile.TryGet(out DepthOfField depthOfField))
+        {
+            depthOfField.active = true;
+        }
+    }
+
+    public void Deactivate()
+    {
+        if (volume.profile.TryGet(out DepthOfField depthOfField))
+        {
+            depthOfField.active = false;
+        }
     }
 }

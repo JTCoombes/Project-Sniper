@@ -32,7 +32,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Alpha_Mask:
-        m_Texture: {fileID: 2800000, guid: 53edd8fae5305f540ba7f1fd4029ca51, type: 3}
+        m_Texture: {fileID: 2800000, guid: affeade9874cf2347abb155e8d0db4d8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AnisotropyMap:
