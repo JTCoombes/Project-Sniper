@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 4964.455, g: 5104.757, b: 5328.8496, a: 1}
+  m_IndirectSpecularColor: {r: 4964.3457, g: 5104.714, b: 5328.717, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -475,6 +475,7 @@ MonoBehaviour:
   TotalAmmo: 30
   IsReloading: 0
   IsEmpty: 0
+  reloadtime: 0.75
   gunshot: {fileID: 0}
   isAiming: 0
   FovBase: 60
@@ -3221,6 +3222,7 @@ MonoBehaviour:
   TotalAmmo: 30
   IsReloading: 0
   IsEmpty: 0
+  reloadtime: 0
   gunshot: {fileID: 0}
   isAiming: 0
   FovBase: 60

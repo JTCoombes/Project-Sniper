@@ -55,6 +55,7 @@ public class SniperRifleV1 : MonoBehaviour
     private int RemainingAmmo;
     public bool IsReloading = false;
     public bool IsEmpty;
+    public float reloadtime;
 
     [Header("Effects")]
     public ParticleSystem gunshot;
@@ -130,20 +131,25 @@ public class SniperRifleV1 : MonoBehaviour
 
         if (IsReloading)
         {
+            Cam.fieldOfView = Mathf.Lerp(Cam.fieldOfView, FovBase, AdsSpeed * Time.deltaTime);
             return;
         }
 
         if(ClipSize <= 0)
         {
             ClipSize = 0;
-            //anim
+            Anim.SetBool("Scope", false);
             StartCoroutine(Reload());
+            isAiming = false;
             return;
         }
 
         if(Input.GetKey(KeyCode.R) && ClipSize < MaxClipSize)
         {
-            //reload
+            Anim.SetBool("Scope", false);
+            StartCoroutine(ManualReload());
+            isAiming = false;
+            return;
         }
 
         if (Input.GetMouseButtonDown(1))
@@ -207,21 +213,64 @@ public class SniperRifleV1 : MonoBehaviour
 
     public IEnumerator Reload()
     {
-        isAiming = false;
         CanZoom = false;
         CantShoot = true;
         IsReloading = true;
-        RemainingAmmo = 0;
-        ammoused = 0;
+        isAiming = false;
 
-        yield return new WaitForSeconds(1f);
 
+        yield return new WaitForSeconds(reloadtime);
+
+        yield return new WaitForSeconds(0.5f);
+
+        RemainingAmmo = TotalAmmo - ammoused;
+        TotalAmmo -= MaxClipSize;
         ClipSize = MaxClipSize;
-
+        if(TotalAmmo <= 0)
+        {
+            MaxClipSize = 0;
+            TotalAmmo = 0;
+            ClipSize = RemainingAmmo + ClipSize;
+        }
+        // ui elements
         yield return new WaitForSeconds(.5f);
 
         CantShoot = false;
         IsReloading = false;
+        ammoused = 0; 
+    }
+
+    public IEnumerator ManualReload()
+    {
+        CantShoot = true;
+        IsReloading = true;
+        isAiming = false;
+        CanZoom = false;
+
+        yield return new WaitForSeconds((MaxClipSize - ClipSize) - reloadtime);
+
+        //anim
+        yield return new WaitForSeconds(.25f);
+
+        RemainingAmmo = TotalAmmo - ammoused;
+        ClipSize = MaxClipSize;
+        TotalAmmo -= ammoused;
+        if(TotalAmmo >= 1)
+        {
+
+        }
+        else if (TotalAmmo <= 0)
+        {
+            TotalAmmo = 0;
+            ClipSize = RemainingAmmo + ClipSize;
+            MaxClipSize = ClipSize;
+        }
+        //ui elements
+        yield return new WaitForSeconds(.5f);
+        //anim
+        IsReloading = false;
+        CantShoot = false;
+        ammoused = 0;
     }
 
     public void Activate()
@@ -238,5 +287,10 @@ public class SniperRifleV1 : MonoBehaviour
         {
             depthOfField.active = false;
         }
+    }
+
+    void recoil()
+    {
+
     }
 }
