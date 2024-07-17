@@ -70,10 +70,26 @@ public class SniperRifleV1 : MonoBehaviour
     public float ScopeBase = 25f;
     public float scopeZoom;
     public float AdsSpeed;
+    [Space]
+    public float AimDuration;
+    public float AimStartTime;
+
+    [Header("Recoil")]
+    public float HorizontalRecoil;
+    public float VerticalRecoil;
+    public float HorizontalRecoil_base, VerticalRecoil_Base;
+    public float HorizontalRecoil_Steady, VerticalRecoil_Steady;
+    public float RecoilResetSpeed;
+    [Space]
+    public float Duration;
+    public float Magnitude;
+    public Camerashake camerashake;
 
     [Space]
     public bool CantShoot = true;
     public bool CanZoom;
+    public bool Steady;
+
 
 
     private void OnEnable()
@@ -89,7 +105,12 @@ public class SniperRifleV1 : MonoBehaviour
     {
         //anim
         //hitsfx
+
+        VerticalRecoil = VerticalRecoil_Base;
+        HorizontalRecoil = HorizontalRecoil_base;
+        CC.RecoilResetSpeed = RecoilResetSpeed;
         pauseMenu = GameObject.Find("Menu Manager").GetComponent<PauseMenu>();
+        camerashake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camerashake>();
 
         if (volume.profile.TryGet(out DepthOfField depthOfField))
         {
@@ -118,6 +139,19 @@ public class SniperRifleV1 : MonoBehaviour
         if (Input.GetKey(KeyCode.Q) && isAiming)
         {
             CanZoom = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isAiming)
+        {
+            
+            Steady = true;
+            //SteadyAim();
+           
+        }
+        else if(Input.GetKeyUp(KeyCode.LeftShift) && isAiming)
+        {
+            Steady = false;
+            //ResetAim();
         }
 
         if(TotalAmmo <= 0 && ClipSize <= 0)
@@ -168,11 +202,47 @@ public class SniperRifleV1 : MonoBehaviour
         if (isAiming)
         {
             Cam.fieldOfView = Mathf.Lerp(Cam.fieldOfView, FovAds, AdsSpeed * Time.deltaTime);
+            VerticalRecoil = VerticalRecoil_Base;
+            HorizontalRecoil = HorizontalRecoil_base;
         }
         else if (!isAiming)
         {
             Cam.fieldOfView = Mathf.Lerp(Cam.fieldOfView, FovBase, AdsSpeed * Time.deltaTime);
             CanZoom = false;
+        }
+
+        if (Steady)
+        {
+            VerticalRecoil = VerticalRecoil_Steady;
+            HorizontalRecoil = HorizontalRecoil_Steady;
+
+            if (AimDuration <= 0)
+            {
+                Steady = false;
+
+                AimDuration = 0f;
+                recoil();
+            }
+            else
+            {
+                AimDuration -= Time.fixedDeltaTime;
+            }
+        }
+        else
+        {
+            VerticalRecoil = VerticalRecoil_Base;
+            HorizontalRecoil = HorizontalRecoil_base;
+
+            if (AimDuration >= AimStartTime)
+            {
+
+                AimDuration = AimStartTime;
+            }
+            else
+            {
+                AimDuration += Time.fixedDeltaTime;
+            }
+            
         }
 
         if (CanZoom)
@@ -200,6 +270,9 @@ public class SniperRifleV1 : MonoBehaviour
         ammoused++;
 
         //bullet
+
+        recoil();
+
         GameObject BulletOBJ = Instantiate(Bullet, Shootpoint.position, Shootpoint.rotation);
         Bullet BulletScript = BulletOBJ.GetComponent<Bullet>();
 
@@ -291,6 +364,34 @@ public class SniperRifleV1 : MonoBehaviour
 
     void recoil()
     {
+        StartCoroutine(camerashake.Shake(Duration,Magnitude));
+        CC.Recoil(VerticalRecoil, HorizontalRecoil);
+    }
 
+    void SteadyAim()
+    {
+        if(AimDuration <= 0)
+        {
+            Steady = false;
+
+            AimDuration = AimStartTime;
+        }
+        else
+        {
+            AimDuration -= Time.fixedDeltaTime;
+        }
+    }
+
+    void ResetAim()
+    {
+        if (AimDuration >= AimStartTime)
+        {
+
+            AimDuration = AimStartTime;
+        }
+        else
+        {
+            AimDuration += Time.fixedDeltaTime;
+        }
     }
 }

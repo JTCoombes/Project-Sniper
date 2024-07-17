@@ -14,6 +14,11 @@ public class CamController : MonoBehaviour
     [Range(60,100)]
     public float BaseFov = 90;
 
+    [Space]
+    public float VerticalRecoil;
+    public float HorizontalRecoil;
+    public float RecoilResetSpeed;
+
     [Header("Refs")]
     public Camera Cam;
     public Transform Player;
@@ -45,9 +50,44 @@ public class CamController : MonoBehaviour
 
         RotX -= mouseY;
         RotX = Mathf.Clamp(RotX, -90f, 90f);
-        transform.localRotation = Quaternion.Euler(RotX, 0f, 0f);
-        Player.Rotate(Vector3.up * mouseX);
+        transform.localRotation = Quaternion.Euler(RotX + -VerticalRecoil, 0f + -HorizontalRecoil, 0f);
+        
 
+
+        if(VerticalRecoil > 0f)
+        {
+            VerticalRecoil -= Time.smoothDeltaTime * RecoilResetSpeed;
+        }
+        else
+        {
+            VerticalRecoil = 0;
+        }
+
+        if(HorizontalRecoil > 0f)
+        {
+            HorizontalRecoil -= Time.smoothDeltaTime * RecoilResetSpeed;
+        }
+        else
+        {
+            HorizontalRecoil = 0f;
+        }
+
+        if (HorizontalRecoil < 0f)
+        {
+            HorizontalRecoil += Time.smoothDeltaTime * RecoilResetSpeed;
+        }
+        else
+        {
+            HorizontalRecoil = 0f;
+        }
+
+        Player.Rotate(Vector3.up * mouseX);
+    }
+
+    public void Recoil(float vertical, float Horizontal)
+    {
+        HorizontalRecoil = Random.Range(-Horizontal, Horizontal);
+        VerticalRecoil = vertical;
     }
 
     private void LoadSettings()

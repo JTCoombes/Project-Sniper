@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 4964.3457, g: 5104.714, b: 5328.717, a: 1}
+  m_IndirectSpecularColor: {r: 4964.3457, g: 5104.714, b: 5328.7246, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -483,8 +483,21 @@ MonoBehaviour:
   ScopeBase: 25
   scopeZoom: 10
   AdsSpeed: 3
+  AimDuration: 5
+  AimStartTime: 5
+  HorizontalRecoil: 0
+  VerticalRecoil: 0
+  HorizontalRecoil_base: 3
+  VerticalRecoil_Base: 3
+  HorizontalRecoil_Steady: 0.5
+  VerticalRecoil_Steady: 0.5
+  RecoilResetSpeed: 30
+  Duration: 0.1
+  Magnitude: 0.05
+  camerashake: {fileID: 0}
   CantShoot: 1
   CanZoom: 0
+  Steady: 0
 --- !u!1 &211123905
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,7 +866,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 274667216}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1740446982}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7dd95b60cdcada4a9f884f81bbe5f6f, type: 3}
@@ -3230,8 +3243,21 @@ MonoBehaviour:
   ScopeBase: 25
   scopeZoom: 0
   AdsSpeed: 3
+  AimDuration: 0
+  AimStartTime: 0
+  HorizontalRecoil: 0
+  VerticalRecoil: 0
+  HorizontalRecoil_base: 0
+  VerticalRecoil_Base: 0
+  HorizontalRecoil_Steady: 0
+  VerticalRecoil_Steady: 0
+  RecoilResetSpeed: 0
+  Duration: 0
+  Magnitude: 0
+  camerashake: {fileID: 0}
   CantShoot: 1
   CanZoom: 0
+  Steady: 0
 --- !u!95 &1705244052
 Animator:
   serializedVersion: 4
@@ -3252,6 +3278,25 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &1740446982 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2798247792132425138, guid: bd04bc8eb247c90459f0c6ca4b35f983,
+    type: 3}
+  m_PrefabInstance: {fileID: 274667216}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1740446983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740446982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5462a3b479719d64f94b56688eb03b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OriginalPos: {x: 0, y: 0, z: 0}
 --- !u!1 &1797485727
 GameObject:
   m_ObjectHideFlags: 0
