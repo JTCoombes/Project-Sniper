@@ -14,7 +14,7 @@ public class SniperRifleV1 : MonoBehaviour
 
     [Header("Misc Elements")]
     public Animator Anim;
-    public GameObject Bullet;
+    public GameObject BulletObject;
     public Transform Shootpoint;
     //public Transform Player;
     public CamController CC;
@@ -218,7 +218,7 @@ public class SniperRifleV1 : MonoBehaviour
 
             if (AimDuration <= 0)
             {
-                Steady = false;
+                    Steady = false;
 
                 AimDuration = 0f;
                 recoil();
@@ -273,17 +273,24 @@ public class SniperRifleV1 : MonoBehaviour
 
         recoil();
 
-        GameObject BulletOBJ = Instantiate(Bullet, Shootpoint.position, Shootpoint.rotation);
+        //GameObject BulletOBJ = Instantiate(Bullet, Shootpoint.position, Shootpoint.rotation);
+        GameObject BulletOBJ = ObjectPoolingManager.instance.SpawnFromPool("Bullet", Shootpoint.position, Shootpoint.rotation);
         Bullet BulletScript = BulletOBJ.GetComponent<Bullet>();
 
         if (BulletScript)
         {
             BulletScript.Initilize(Shootpoint, shotSpeed, GravityForce);
         }
-        Destroy(BulletOBJ, BulletLife);
-                
+        //Destroy(BulletOBJ, BulletLife);
+        BulletScript.StartCoroutine(BulletScript.Despawn(BulletOBJ, BulletLife));
     }
 
+    void Despawn()
+    {
+        
+    }
+
+    
     public IEnumerator Reload()
     {
         CanZoom = false;

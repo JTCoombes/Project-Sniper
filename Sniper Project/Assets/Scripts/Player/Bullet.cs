@@ -18,6 +18,7 @@ public class Bullet : MonoBehaviour
         StartDir = startPosition.forward.normalized;
         this.Speed = speed;
         this.Gravity = gravity;
+        StopAllCoroutines();
         initilized = true;
     }
 
@@ -63,8 +64,9 @@ public class Bullet : MonoBehaviour
             {
                 Debug.Log(hit.transform.name);
 
-               
-                Destroy(this.gameObject);
+
+                //Destroy(this.gameObject);
+                this.gameObject.SetActive(false);
             }
             
         }
@@ -78,7 +80,8 @@ public class Bullet : MonoBehaviour
                 shootable.Onhit(hit,10);
             }
             */
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
+            //Destroy(this.gameObject);
         }
     }
 
@@ -89,5 +92,13 @@ public class Bullet : MonoBehaviour
         float currentTime = Time.time - StartTime;
         Vector3 currentPos = findPoint(currentTime);
         transform.position = currentPos;
+    }
+
+
+    public IEnumerator Despawn(GameObject obj, float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        obj.SetActive(false);
     }
 }
