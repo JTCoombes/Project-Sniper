@@ -207,3 +207,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   Gravity: 0
+  impactForce: 1000

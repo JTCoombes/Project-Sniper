@@ -8,6 +8,9 @@
         },
         {
             "m_Id": "91bed965d4a54d9f9343a3a9b0324031"
+        },
+        {
+            "m_Id": "b3ef4a83550e4d368030689c05dce0ae"
         }
     ],
     "m_Keywords": [],
@@ -287,8 +290,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -521.0000610351563,
-            "y": 161.99998474121095,
+            "x": -815.0,
+            "y": 0.000004172325134277344,
             "width": 208.0,
             "height": 435.0
         }
@@ -500,6 +503,9 @@
         },
         {
             "m_Id": "91bed965d4a54d9f9343a3a9b0324031"
+        },
+        {
+            "m_Id": "b3ef4a83550e4d368030689c05dce0ae"
         }
     ]
 }
@@ -1003,10 +1009,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -773.9999389648438,
-            "y": 200.0,
-            "width": 153.0,
-            "height": 33.99998474121094
+            "x": -1068.0,
+            "y": 38.000003814697269,
+            "width": 153.00006103515626,
+            "height": 33.9999885559082
         }
     },
     "m_Slots": [
@@ -1039,6 +1045,35 @@
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 3,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty",
+    "m_ObjectId": "b3ef4a83550e4d368030689c05dce0ae",
+    "m_Guid": {
+        "m_GuidSerialized": "4ac38753-7758-4ffc-8eec-96c9fe58366b"
+    },
+    "m_Name": "Color",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Color",
+    "m_DefaultReferenceName": "_Color",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "r": 1.0,
+        "g": 0.599056601524353,
+        "b": 0.599056601524353,
+        "a": 0.0
+    },
+    "isMainColor": false,
+    "m_ColorMode": 0
 }
 
 {

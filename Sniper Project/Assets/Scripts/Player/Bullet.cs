@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Bullet : MonoBehaviour
 {
     public float Speed;
     public float Gravity;
+    public float impactForce;
     private Vector3 StartPos;
     private Vector3 StartDir;
 
     private bool initilized = false;
     private float StartTime = -1;
+
+   
 
     public void Initilize(Transform startPosition, float speed, float gravity)
     {
@@ -25,7 +29,7 @@ public class Bullet : MonoBehaviour
     private Vector3 findPoint(float time)
     {
         Vector3 point = StartPos + (StartDir * Speed * time);
-        Vector3 gravityVector = Vector3.down * time * time;
+        Vector3 gravityVector = Vector3.down * Gravity * time * time;
         return point + gravityVector;
     }
 
@@ -45,6 +49,21 @@ public class Bullet : MonoBehaviour
         CalculateHit();
     }
 
+    void OnHIT(RaycastHit hit)
+    {
+        Debug.Log(hit.transform.name);
+
+        Shootable shootableObject = hit.transform.GetComponent<Shootable>();
+
+        if (shootableObject)
+        {
+             shootableObject.OnHit(hit);
+        }
+
+
+        //Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
+    }
     void CalculateHit()
     {
         RaycastHit hit;
@@ -57,31 +76,22 @@ public class Bullet : MonoBehaviour
         
         Vector3 NextPos = findPoint(nextTime);
 
-        if(PrevTime > 0)
+        
+
+        if (PrevTime > 0)
         {
             Vector3 prevPos = findPoint(PrevTime);
+
+            
             if (CastRayBetweenPoints(prevPos, currentPos, out hit))
             {
-                Debug.Log(hit.transform.name);
-
-
-                //Destroy(this.gameObject);
-                this.gameObject.SetActive(false);
+               OnHIT(hit);
             }
             
         }
         if(CastRayBetweenPoints(currentPos, NextPos, out hit))
         {
-            Debug.Log(hit.transform.name);
-
-            /*Shootable shootable = hit.transform.GetComponent<Shootable>();
-            if (shootable)
-            {
-                shootable.Onhit(hit,10);
-            }
-            */
-            this.gameObject.SetActive(false);
-            //Destroy(this.gameObject);
+            OnHIT(hit);
         }
     }
 

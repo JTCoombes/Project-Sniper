@@ -5,6 +5,12 @@ using UnityEngine.AI;
 
 public class AI : MonoBehaviour
 {
+    public enum States
+    {
+        Patrol,
+        Dead,
+    }
+
     public Transform[] Waypoints;
     [SerializeField]
     int randomSpot;
@@ -12,20 +18,31 @@ public class AI : MonoBehaviour
     private float Waitime;
     public float StartWaitime = 1f;
 
+    private States AiStates;
+
     NavMeshAgent agent;
+    [SerializeField]
+    private Rigidbody[] rigidbodies;
+    private Animator anim;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+
+        rigidbodies = GetComponentsInChildren<Rigidbody>();
+        anim = GetComponent<Animator>();
+
+        AiStates = States.Patrol;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        DisableRagdoll();
+
         Waitime = StartWaitime;
         randomSpot = Random.Range(0, Waypoints.Length);
 
-        
     }
 
     private void Patrol()
@@ -47,9 +64,48 @@ public class AI : MonoBehaviour
         }
     }
 
+    private void Death()
+    {
+        agent.SetDestination(transform.position);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        Patrol();
+        if(AiStates == States.Patrol)
+        {
+            Patrol();
+        }
+
+        if(AiStates == States.Dead)
+        {
+            Invoke("Death", .5f);
+        }
+
+        
+    }
+
+    void DisableRagdoll()
+    {
+        anim.enabled = true;
+        foreach (Rigidbody R in rigidbodies)
+        {
+            
+            R.useGravity = false;
+        }
+
+    }
+
+    public void ActivateRagdoll()
+    {
+        anim.enabled = false;
+        AiStates = States.Dead;
+        foreach (Rigidbody R in rigidbodies)
+        {
+
+            R.useGravity = true;
+            
+        }
+
     }
 }

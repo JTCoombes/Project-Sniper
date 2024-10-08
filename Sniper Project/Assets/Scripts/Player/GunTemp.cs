@@ -46,29 +46,31 @@ public class GunTemp : MonoBehaviour
             cursorPos = hit.point;
             Debug.Log(hit.transform.name);
 
+            /*
             Target target = GameObject.FindGameObjectWithTag("Enemy").GetComponentInParent<Target>();
             if(target != null)
             {
                 if (hit.collider.CompareTag("Head"))
                 {
                     Debug.Log("hit head");
-                    target.TakeDamage(Damage);
+                    //target.TakeDamage(Damage);
                 }
 
                 if (hit.collider.CompareTag("Body"))
                 {
                     Debug.Log("hit Body");
-                    target.TakeDamage(Damage/2);
+                    //target.TakeDamage(Damage/2);
                 }
 
                 if (hit.collider.CompareTag("Limb"))
                 {
                     Debug.Log("hit Limbs");
-                    target.TakeDamage(Damage/3);
+                    //target.TakeDamage(Damage/3);
                 }
 
 
             }
+            */
         }
         else
         {
