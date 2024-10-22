@@ -40,6 +40,8 @@ public class AI : MonoBehaviour
     {
         DisableRagdoll();
 
+        anim.SetFloat("Forward", 0);
+
         Waitime = StartWaitime;
         randomSpot = Random.Range(0, Waypoints.Length);
 
@@ -47,10 +49,12 @@ public class AI : MonoBehaviour
 
     private void Patrol()
     {
+        anim.SetFloat("Forward", 1);
         agent.SetDestination(Waypoints[randomSpot].position);
 
         if(Vector3.Distance(transform.position, Waypoints[randomSpot].position) < 2.0f)
         {
+            anim.SetFloat("Forward", 0);
             if(Waitime <= 0)
             {
                 randomSpot = Random.Range(0, Waypoints.Length);
@@ -79,7 +83,7 @@ public class AI : MonoBehaviour
 
         if(AiStates == States.Dead)
         {
-            Invoke("Death", .5f);
+            Invoke("Death", .9f);
         }
 
         

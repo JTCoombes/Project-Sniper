@@ -209,6 +209,7 @@ public class SniperRifleV1 : MonoBehaviour
         {
             Cam.fieldOfView = Mathf.Lerp(Cam.fieldOfView, FovBase, AdsSpeed * Time.deltaTime);
             CanZoom = false;
+            Time.timeScale = 1.0f;
         }
 
         if (Steady)
@@ -218,13 +219,15 @@ public class SniperRifleV1 : MonoBehaviour
 
             if (AimDuration <= 0)
             {
-                    Steady = false;
-
+                Steady = false;
+                Time.timeScale = 1f;
                 AimDuration = 0f;
                 recoil();
             }
             else
             {
+                Time.timeScale = .25f;
+                Time.fixedDeltaTime = Time.timeScale * 0.2f;
                 AimDuration -= Time.fixedDeltaTime;
             }
         }
@@ -235,12 +238,13 @@ public class SniperRifleV1 : MonoBehaviour
 
             if (AimDuration >= AimStartTime)
             {
-
+                
                 AimDuration = AimStartTime;
             }
             else
             {
                 AimDuration += Time.fixedDeltaTime;
+                Time.timeScale = 1f;
             }
             
         }
