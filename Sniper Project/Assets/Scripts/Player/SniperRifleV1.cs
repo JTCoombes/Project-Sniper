@@ -123,6 +123,8 @@ public class SniperRifleV1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
+
         if(Input.GetMouseButtonDown(0) && Time.time >= NextTimeToFire && isAiming)
         {
             NextTimeToFire = Time.time + 1f / FireRate;
@@ -205,12 +207,13 @@ public class SniperRifleV1 : MonoBehaviour
             VerticalRecoil = VerticalRecoil_Base;
             HorizontalRecoil = HorizontalRecoil_base;
         }
-        else if (!isAiming)
+        else if (!isAiming && !pauseMenu.IsPaused)
         {
             Cam.fieldOfView = Mathf.Lerp(Cam.fieldOfView, FovBase, AdsSpeed * Time.deltaTime);
             CanZoom = false;
             Time.timeScale = 1.0f;
         }
+
 
         if (Steady)
         {

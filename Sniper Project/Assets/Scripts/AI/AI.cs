@@ -8,6 +8,7 @@ public class AI : MonoBehaviour
     public enum States
     {
         Patrol,
+        RaiseAlarm,
         Dead,
     }
 
@@ -19,6 +20,15 @@ public class AI : MonoBehaviour
     public float StartWaitime = 1f;
 
     private States AiStates;
+    public Sight AiSight;
+
+    [SerializeField]
+    private string NewTag;
+    [SerializeField]
+    private int NewLayer;
+    bool isDead;
+    [SerializeField]
+    Collider[] Cols;
 
     NavMeshAgent agent;
     [SerializeField]
@@ -30,6 +40,7 @@ public class AI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
 
         rigidbodies = GetComponentsInChildren<Rigidbody>();
+        Cols = GetComponentsInChildren<Collider>();
         anim = GetComponent<Animator>();
 
         AiStates = States.Patrol;
@@ -46,6 +57,8 @@ public class AI : MonoBehaviour
         randomSpot = Random.Range(0, Waypoints.Length);
 
     }
+
+   
 
     private void Patrol()
     {
@@ -71,22 +84,55 @@ public class AI : MonoBehaviour
     private void Death()
     {
         agent.SetDestination(transform.position);
+        this.gameObject.tag = NewTag;
+        this.gameObject.layer = NewLayer;
+
+        foreach (Collider t in Cols)
+        {
+            t.gameObject.layer = NewLayer;
+        }
+        /*
+        foreach(Transform t in gameObject.GetComponentInChildren<Transform>(false))
+        {
+            t.gameObject.layer = NewLayer;
+        }
+        */
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         if(AiStates == States.Patrol)
         {
             Patrol();
         }
-
+        */
         if(AiStates == States.Dead)
         {
+            //isDead = true;
             Invoke("Death", .9f);
         }
 
+        if(AiStates == States.RaiseAlarm)
+        {
+            RaiseAlarm();
+        }
+
+        if (AiSight.Insight)
+        {
+            AiStates = States.RaiseAlarm;
+        }
+        else
+        {
+            AiStates = States.Patrol;
+        }
         
+    }
+
+    void RaiseAlarm()
+    {
+        Debug.Log("BODY FOUND");
     }
 
     void DisableRagdoll()
