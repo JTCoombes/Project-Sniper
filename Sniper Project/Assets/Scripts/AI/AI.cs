@@ -19,6 +19,7 @@ public class AI : MonoBehaviour
     private float Waitime;
     public float StartWaitime = 1f;
 
+    [SerializeField]
     private States AiStates;
     public Sight AiSight;
 
@@ -102,12 +103,12 @@ public class AI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
+        
         if(AiStates == States.Patrol)
         {
             Patrol();
         }
-        */
+        
         if(AiStates == States.Dead)
         {
             //isDead = true;

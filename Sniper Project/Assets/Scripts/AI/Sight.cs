@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Sight : MonoBehaviour
@@ -61,7 +62,11 @@ public class Sight : MonoBehaviour
                 {
                     
                     VisibleTargets.Add(target);
-                    Insight = true;
+                    //Insight = true;
+                    if(VisibleTargets.Count > 1)
+                    {
+                        Insight = true;
+                    }
                 }
                 else
                 {

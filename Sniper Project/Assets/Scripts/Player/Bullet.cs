@@ -5,6 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Bullet : MonoBehaviour
 {
+    public Vector2 Wind;
     public float Speed;
     public float Gravity;
     public float impactForce;
@@ -16,21 +17,28 @@ public class Bullet : MonoBehaviour
 
    
 
-    public void Initilize(Transform startPosition, float speed, float gravity)
+    public void Initilize(Transform startPosition, float speed, float gravity, Vector2 wind)
     {
         StartPos = startPosition.position;
         StartDir = startPosition.forward.normalized;
         this.Speed = speed;
         this.Gravity = gravity;
+        this.Wind = wind;
         StopAllCoroutines();
         initilized = true;
+        StartTime = -1f;
+
+        Debug.Log("" + wind.x);
+        Debug.Log("" + wind.y);
     }
 
     private Vector3 findPoint(float time)
     {
-        Vector3 point = StartPos + (StartDir * Speed * time);
-        Vector3 gravityVector = Vector3.down * Gravity * time * time;
-        return point + gravityVector;
+
+        Vector3 MovementVec = (StartDir * time * Speed);
+        Vector3 WindVec = new Vector3(Wind.x, 0, Wind.y) * time * time;
+        Vector3 gravityVector = Vector3.down * time * time * Gravity;
+        return StartPos + MovementVec + gravityVector + WindVec;
     }
 
     private bool CastRayBetweenPoints(Vector3 startPoint, Vector3 Endpoint, out RaycastHit hit)
