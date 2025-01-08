@@ -226,7 +226,7 @@ public class SniperRifleV1 : MonoBehaviour
                 Steady = false;
                 Time.timeScale = 1f;
                 AimDuration = 0f;
-                //recoil();
+                recoil();
             }
             else
             {
@@ -279,7 +279,7 @@ public class SniperRifleV1 : MonoBehaviour
 
         //bullet
 
-        //recoil();
+        recoil();
 
         //GameObject BulletOBJ = Instantiate(Bullet, Shootpoint.position, Shootpoint.rotation);
         GameObject BulletOBJ = ObjectPoolingManager.instance.SpawnFromPool("Bullet", Shootpoint.position, Shootpoint.rotation);
@@ -376,13 +376,13 @@ public class SniperRifleV1 : MonoBehaviour
             depthOfField.active = false;
         }
     }
-    /*
+    
     void recoil()
     {
         StartCoroutine(camerashake.Shake(Duration,Magnitude));
         CC.Recoil(VerticalRecoil, HorizontalRecoil);
     }
-    */
+    
 
     void SteadyAim()
     {
