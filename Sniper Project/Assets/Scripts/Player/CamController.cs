@@ -88,6 +88,7 @@ public class CamController : MonoBehaviour
     {
         HorizontalRecoil = Random.Range(-Horizontal, Horizontal);
         VerticalRecoil = vertical;
+        
     }
 
     private void LoadSettings()

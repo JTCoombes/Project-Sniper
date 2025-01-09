@@ -379,8 +379,8 @@ public class SniperRifleV1 : MonoBehaviour
     
     void recoil()
     {
-        CC.Recoil(VerticalRecoil, HorizontalRecoil);
         StartCoroutine(camerashake.Shake(Duration,Magnitude));
+        CC.Recoil(VerticalRecoil, HorizontalRecoil);
     }
     
 
