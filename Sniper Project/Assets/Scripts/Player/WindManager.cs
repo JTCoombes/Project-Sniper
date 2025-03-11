@@ -51,7 +51,7 @@ public class WindManager : MonoBehaviour
 
     private void UpdateWind()
     {
-        Wind = Vector2.Lerp(Wind, windUpdated, Time.deltaTime);
+       // Wind = Vector2.Lerp(Wind, windUpdated, Time.deltaTime);
 
 
     }

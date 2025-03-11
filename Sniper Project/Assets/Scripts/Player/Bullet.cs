@@ -28,8 +28,8 @@ public class Bullet : MonoBehaviour
         initilized = true;
         StartTime = -1f;
 
-        Debug.Log("" + wind.x);
-        Debug.Log("" + wind.y);
+        //Debug.Log("" + wind.x);
+        //Debug.Log("" + wind.y);
     }
 
     private Vector3 findPoint(float time)

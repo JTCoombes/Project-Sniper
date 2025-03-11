@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
+using UnityEngine.UI;
+using TMPro;
+using Unity.VisualScripting;
 
 public class SniperRifleV1 : MonoBehaviour
 {
@@ -32,7 +35,8 @@ public class SniperRifleV1 : MonoBehaviour
     public float BulletLife;
 
     [Header("UI")]
-    public PauseMenu pauseMenu; 
+    public PauseMenu pauseMenu;
+    public TMP_Text DistanceText;
 
     [Space]
 
@@ -91,7 +95,12 @@ public class SniperRifleV1 : MonoBehaviour
     public bool CanZoom;
     public bool Steady;
 
-
+    RaycastHit hit;
+    public float range;
+    [SerializeField]
+    private int Distance;
+    [SerializeField]
+    Vector3 cursorpos;
 
     private void OnEnable()
     {
@@ -124,6 +133,7 @@ public class SniperRifleV1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
        
 
         if(Input.GetMouseButtonDown(0) && Time.time >= NextTimeToFire && isAiming)
@@ -187,6 +197,35 @@ public class SniperRifleV1 : MonoBehaviour
             StartCoroutine(ManualReload());
             isAiming = false;
             return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            
+            if (Physics.Raycast(Shootpoint.position, Shootpoint.forward, out hit, Mathf.Infinity, ~IgnoreRaycast))
+            {
+
+                cursorpos = hit.point;
+                Debug.Log("" + hit.transform.name);
+
+                //Distance = (int)Vector3.Distance(Shootpoint.position, hit.point) / 10;
+
+                if (hit.collider.CompareTag("Body") || hit.collider.CompareTag("Limb") || hit.collider.CompareTag("Head"))
+                {
+                    DistanceText.text = Vector3.Distance(Shootpoint.position, hit.point).ToString("0") + "M";
+                    
+                }
+                else
+                {
+                    DistanceText.text = Vector3.Distance(Shootpoint.position, hit.point).ToString("0") + "M";
+
+                }
+            }
+            else
+            {
+                Debug.Log("0001");
+            }
+
         }
 
         if (Input.GetMouseButtonDown(1))
@@ -270,6 +309,39 @@ public class SniperRifleV1 : MonoBehaviour
         {
             CantShoot = false;
         }
+
+        Ray ray = Cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        ray.origin = Shootpoint.position;
+
+        /*
+        if (Physics.Raycast(Shootpoint.position, Shootpoint.forward, out hit, Mathf.Infinity, ~IgnoreRaycast))
+        {
+
+            cursorpos = hit.point;
+            Debug.Log("" + hit.transform.name);
+
+            //Distance = (int)Vector3.Distance(Shootpoint.position, hit.point) / 10;
+
+
+
+            DistanceText.text = Vector3.Distance(ray.origin, hit.point).ToString("0") + "M";
+
+
+
+
+        }
+        else 
+        {
+
+            //Distance = (int)Vector3.Distance(Shootpoint.position, Shootpoint.forward * range / 100f);
+
+            //ray.GetPoint(Distance);
+            cursorpos = ray.GetPoint(range);           
+
+            DistanceText.text = Vector3.Distance(transform.position, cursorpos).ToString("0") + "M";
+        }
+            Debug.DrawRay(Shootpoint.position, Shootpoint.forward * Mathf.Infinity, Color.red ,1);
+        */
     }
 
     public void Shoot()
