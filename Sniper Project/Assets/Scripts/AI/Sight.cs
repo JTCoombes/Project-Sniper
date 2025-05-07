@@ -131,10 +131,10 @@ public class Sight : MonoBehaviour
             }
         }
 
-        Mesh.Clear();
-        Mesh.vertices = Vertices;
-        Mesh.triangles = Tris;
-        Mesh.RecalculateNormals();
+        //Mesh.Clear();
+        //Mesh.vertices = Vertices;
+        //Mesh.triangles = Tris;
+        //Mesh.RecalculateNormals();
     } 
 
     EdgeInfo FindEdge(ViewCastInfo MinView, ViewCastInfo MaxView)

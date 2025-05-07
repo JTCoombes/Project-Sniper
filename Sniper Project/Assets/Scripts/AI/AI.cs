@@ -151,9 +151,10 @@ public class AI : MonoBehaviour
     {
         anim.enabled = false;
         AiStates = States.Dead;
+        agent.enabled = false;
         foreach (Rigidbody R in rigidbodies)
         {
-
+            
             R.useGravity = true;
             
         }
