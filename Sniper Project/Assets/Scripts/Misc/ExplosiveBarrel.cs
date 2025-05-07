@@ -13,10 +13,27 @@ public class ExplosiveBarrel : Shootable
     [SerializeField] 
     private Collider[] collidersToMove;
 
+    public AudioClip[] audioClips;
+    public AudioSource Source;
+
+    [Range(0.1f, .5f)]
+    public float VolumeChangeMultiplier;
+    [Range(0.1f, .5f)]
+    public float PitchChangeMultiplier;
+
+    private void Start()
+    {
+        Source = GetComponent<AudioSource>();
+    }
+
     public override void OnHit(RaycastHit hit)
     {
         colliders = Physics.OverlapSphere(transform.position, explosionRadius);
-        
+
+        Source.clip = audioClips[Random.Range(0, audioClips.Length)];
+        Source.volume = Random.Range(1 - VolumeChangeMultiplier, 1);
+        Source.pitch = Random.Range(1 - PitchChangeMultiplier, 1 + PitchChangeMultiplier);
+        Source.PlayOneShot(Source.clip);
 
         foreach (Collider Objects in colliders)
         {
