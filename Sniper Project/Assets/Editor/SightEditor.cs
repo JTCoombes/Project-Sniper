@@ -5,6 +5,7 @@ using UnityEngine;
 [CustomEditor(typeof (Sight))]
 public class SightEditor : Editor
 {
+    
     private void OnSceneGUI()
     {
         Sight sight = (Sight)target;
@@ -22,4 +23,5 @@ public class SightEditor : Editor
         }
     
     }
+    
 }

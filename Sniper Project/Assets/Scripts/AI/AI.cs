@@ -124,7 +124,7 @@ public class AI : MonoBehaviour
         {
             AiStates = States.RaiseAlarm;
         }
-        else
+        else if (AiSight.Insight != true)
         {
             AiStates = States.Patrol;
         }
