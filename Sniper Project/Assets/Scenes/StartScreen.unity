@@ -637,7 +637,7 @@ MonoBehaviour:
   Screens:
   - {fileID: 1643788232}
   - {fileID: 2104481127}
-  LoadingScreen: {fileID: 0}
+  LoadingScreen: {fileID: 1513121221}
   Progressbar: {fileID: 0}
   ProgressText: {fileID: 0}
 --- !u!1 &928800569
@@ -1178,6 +1178,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445423160}
   m_CullTransparentMesh: 1
+--- !u!1 &1513121221 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7384476784617721122, guid: 7bdaa680e839c0c48932fe7ca5154f65,
+    type: 3}
+  m_PrefabInstance: {fileID: 7384476784366405617}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1531173205
 GameObject:
   m_ObjectHideFlags: 0
@@ -1756,6 +1762,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LoadingScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384476784617721122, guid: 7bdaa680e839c0c48932fe7ca5154f65,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7384476784617721129, guid: 7bdaa680e839c0c48932fe7ca5154f65,
         type: 3}

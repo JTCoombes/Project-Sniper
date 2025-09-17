@@ -40,7 +40,7 @@ public class ExplosiveBarrel : Shootable
             AI ai = Objects.GetComponentInParent<AI>();
             if (ai != null)
             {
-                Debug.Log("AI Found");
+                //Debug.Log("AI Found");
                 ai.ActivateRagdoll();
             }
         }
@@ -52,7 +52,7 @@ public class ExplosiveBarrel : Shootable
             Rigidbody RB = Objects.GetComponent<Rigidbody>();
             if (RB != null)
             {
-                Debug.Log("AI Found");
+                //Debug.Log("AI Found");
                 RB.AddExplosionForce(ExplosionForce, transform.position, explosionRadius);
             }
         }

@@ -120,7 +120,7 @@ public class SniperRifleV1 : MonoBehaviour
         HorizontalRecoil = HorizontalRecoil_base;
         CC.RecoilResetSpeed = RecoilResetSpeed;
         pauseMenu = GameObject.Find("Menu Manager").GetComponent<PauseMenu>();
-        camerashake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camerashake>();
+        //camerashake = GameObject.Find("Main Camera").GetComponent<Camerashake>();
 
         if (volume.profile.TryGet(out DepthOfField depthOfField))
         {

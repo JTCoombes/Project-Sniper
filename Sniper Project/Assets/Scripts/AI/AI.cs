@@ -36,6 +36,8 @@ public class AI : MonoBehaviour
     private Rigidbody[] rigidbodies;
     private Animator anim;
 
+ 
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -115,6 +117,7 @@ public class AI : MonoBehaviour
             Invoke("Death", .9f);
         }
 
+
         if(AiStates == States.RaiseAlarm)
         {
             RaiseAlarm();
@@ -148,16 +151,18 @@ public class AI : MonoBehaviour
     }
 
     public void ActivateRagdoll()
-    {
+    {  
+
         anim.enabled = false;
         AiStates = States.Dead;
         agent.enabled = false;
         foreach (Rigidbody R in rigidbodies)
         {
-            
+
             R.useGravity = true;
-            
+
         }
+
 
     }
 }

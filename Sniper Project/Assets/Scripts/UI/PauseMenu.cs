@@ -54,7 +54,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = Mathf.Epsilon;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        Debug.Log("Paused Game");
+        //Debug.Log("Paused Game");
     }
 
     public void Resume()
@@ -67,7 +67,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        Debug.Log("Resume Game");
+        //Debug.Log("Resume Game");
     }
 
     public void Settings()
@@ -78,7 +78,7 @@ public class PauseMenu : MonoBehaviour
         SettingsUI.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        Debug.Log("In Settings Menu");
+        //Debug.Log("In Settings Menu");
     }
 
     public void Return()

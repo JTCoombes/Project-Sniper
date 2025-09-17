@@ -18,9 +18,12 @@ public class EnemyHit : Shootable
     public float PitchChangeMultiplier;
     public float Impact;
 
+
     public void Start()
     {
         Source = GetComponent<AudioSource>();
+
+        ai = GetComponentInParent<AI>();
     }
 
     public override void OnHit(RaycastHit hit)
@@ -28,10 +31,10 @@ public class EnemyHit : Shootable
        GameObject bloodspalt = ObjectPoolingManager.instance.SpawnFromPool("BloodSplat", hit.point + (hit.normal * 0.05f), Quaternion.LookRotation(hit.normal));
        ai.ActivateRagdoll();
        GetComponent<Rigidbody>().AddForceAtPosition(-hit.normal * Impact, hit.point);
-        Source.clip = audioClips[Random.Range(0, audioClips.Length)];
-        Source.volume = Random.Range(1 - VolumeChangeMultiplier,1);
-        Source.pitch = Random.Range(1 - PitchChangeMultiplier, 1 + PitchChangeMultiplier);
-        Source.PlayOneShot(Source.clip);
+       Source.clip = audioClips[Random.Range(0, audioClips.Length)];
+       Source.volume = Random.Range(1 - VolumeChangeMultiplier,1);
+       Source.pitch = Random.Range(1 - PitchChangeMultiplier, 1 + PitchChangeMultiplier);
+       Source.PlayOneShot(Source.clip);
            // play hit sfx
        //ActivateRagdoll();
        

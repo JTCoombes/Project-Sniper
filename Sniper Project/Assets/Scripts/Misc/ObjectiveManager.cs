@@ -6,7 +6,9 @@ using TMPro;
 
 public class ObjectiveManager : MonoBehaviour
 {
-    public Objectives objectives;
+    public MainObjectives MainObj;
+
+    public SecondaryObjective SecondaryObjective;
 
     public bool MainObjectiveComplete;
 
@@ -27,13 +29,15 @@ public class ObjectiveManager : MonoBehaviour
         if (!TargetAlive())
         {
             
-            MainObjectiveComplete = objectives.ObjectiveComplete;
-            objectives.ObjectiveComplete = true;
+            //MainObjectiveComplete = MainObj.ObjectiveComplete;
+            //MainObj.ObjectiveComplete = true;
+
+            MainObjectiveComplete = true;
             Debug.Log("Objective Complete");
         }
         else
         {
-            Debug.Log("Objective Incomplete");
+            //Debug.Log("Objective Incomplete");
             return;
         }
     }
@@ -56,9 +60,26 @@ public class ObjectiveManager : MonoBehaviour
     }
 }
 [System.Serializable]
-public class Objectives
+public class MainObjectives
 {
     public string ObjectiveName, ObjectiveDescription;
     public GameObject[] enemies;
+    //public bool ObjectiveComplete;
+}
+
+[System.Serializable]
+public class SecondaryObjective
+{
+    public string ObjectiveName, ObjectiveDescription;
     public bool ObjectiveComplete;
+    public ObjectiveType ObjType;
+
+    public GameObject[] enemies;
+
+    public enum ObjectiveType 
+    {
+        Kill,
+        Destruction,
+    
+    }
 }
