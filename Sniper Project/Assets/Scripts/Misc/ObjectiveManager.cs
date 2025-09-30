@@ -42,16 +42,20 @@ public class ObjectiveManager : MonoBehaviour
             //return;
             MainObjectiveComplete = false;
         }
-
-        if (!GuardsAlive())
+    
+        if(SecondaryObjective.ObjType == SecondaryObjective.ObjectiveType.Kill)
         {
-            SecondaryObjectiveComplete = true;
+            if (!GuardsAlive())
+            {
+                SecondaryObjectiveComplete = true;
+            }
+            else
+            {
+                SecondaryObjectiveComplete = false;
+                //return;
+            }
         }
-        else
-        {
-            SecondaryObjectiveComplete = false;
-            //return;
-        }
+      
     }
 
     bool TargetAlive() 
