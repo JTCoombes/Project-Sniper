@@ -127,7 +127,7 @@ public class AI : MonoBehaviour
         {
             AiStates = States.RaiseAlarm;
         }
-        else if (AiSight.Insight != true)
+        else if (AiSight.Insight != true && !isDead)
         {
             AiStates = States.Patrol;
         }
@@ -136,7 +136,7 @@ public class AI : MonoBehaviour
 
     void RaiseAlarm()
     {
-        Debug.Log("BODY FOUND");
+        //Debug.Log("BODY FOUND");
     }
 
     void DisableRagdoll()
@@ -153,8 +153,8 @@ public class AI : MonoBehaviour
     public void ActivateRagdoll()
     {  
 
-        anim.enabled = false;
         AiStates = States.Dead;
+        anim.enabled = false;
         agent.enabled = false;
         foreach (Rigidbody R in rigidbodies)
         {

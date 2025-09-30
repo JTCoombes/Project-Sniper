@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Limb
   - Dead Enemy
+  - Target
   layers:
   - Default
   - TransparentFX

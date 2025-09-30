@@ -63,6 +63,9 @@ public class ExplosiveBarrel : Shootable
 
     }
 
-
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
+    }
 
 }

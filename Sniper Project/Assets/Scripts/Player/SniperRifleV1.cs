@@ -270,7 +270,7 @@ public class SniperRifleV1 : MonoBehaviour
             else
             {
                 Time.timeScale = .25f;
-                Time.fixedDeltaTime = Time.timeScale * 0.2f;
+                Time.fixedDeltaTime = Time.timeScale * .02f;
                 AimDuration -= Time.fixedDeltaTime;
             }
         }

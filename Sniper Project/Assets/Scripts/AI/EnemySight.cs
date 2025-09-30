@@ -79,6 +79,7 @@ public class EnemySight : MonoBehaviour
         {
             return false;
         }
+        Debug.Log("Spotted");
         return true;
     }
 

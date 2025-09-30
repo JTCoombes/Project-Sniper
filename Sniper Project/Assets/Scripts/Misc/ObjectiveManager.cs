@@ -10,12 +10,13 @@ public class ObjectiveManager : MonoBehaviour
 
     public SecondaryObjective SecondaryObjective;
 
-    public bool MainObjectiveComplete;
+    public bool MainObjectiveComplete, SecondaryObjectiveComplete;
 
     [SerializeField]
     private TMP_Text ObjectiveText, ObjectiveDescriptionText;
 
-    private float SearchCountdown = 1f; 
+    [SerializeField]
+    private float PrimaryCountDown, SecondaryCountdown; 
 
     // Start is called before the first frame update
     void Start()
@@ -38,26 +39,55 @@ public class ObjectiveManager : MonoBehaviour
         else
         {
             //Debug.Log("Objective Incomplete");
-            return;
+            //return;
+            MainObjectiveComplete = false;
+        }
+
+        if (!GuardsAlive())
+        {
+            SecondaryObjectiveComplete = true;
+        }
+        else
+        {
+            SecondaryObjectiveComplete = false;
+            //return;
         }
     }
 
-
-
     bool TargetAlive() 
     {
-        SearchCountdown -= Time.deltaTime;
-        if(SearchCountdown <= 0f)
+        PrimaryCountDown -= Time.deltaTime;
+        if(PrimaryCountDown <= 0f)
         {
-            SearchCountdown = 1f;
-            if(GameObject.FindGameObjectWithTag("Enemy") == null)
+            PrimaryCountDown = 1f;
+            if(GameObject.FindGameObjectWithTag("Target") == null)
             {
-                SearchCountdown = 0f;
+                PrimaryCountDown = 0f;
                 return false;
             }
         }
         return true;
     }
+
+    bool GuardsAlive()
+    {
+        SecondaryCountdown -= Time.deltaTime;
+        if(SecondaryCountdown <= 0f)
+        {
+            SecondaryCountdown = 1f;
+            if(GameObject.FindGameObjectWithTag("Enemy") == null)
+            {
+                SecondaryCountdown = 0f;
+                return false;
+            }
+            
+        }
+        return true;
+    }
+
+   
+
+
 }
 [System.Serializable]
 public class MainObjectives
@@ -71,8 +101,8 @@ public class MainObjectives
 public class SecondaryObjective
 {
     public string ObjectiveName, ObjectiveDescription;
-    public bool ObjectiveComplete;
     public ObjectiveType ObjType;
+    //public bool ObjectiveComplete;
 
     public GameObject[] enemies;
 
